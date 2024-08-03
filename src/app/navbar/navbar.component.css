@@ -1,0 +1,14 @@
+.list a i{
+    color: #198754;;
+}
+.cart{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: #65656a;
+    color: yellow;
+    border-radius: 50%;
+    bottom: -5px;
+    left: 23px;
+    text-align: center;
+}
