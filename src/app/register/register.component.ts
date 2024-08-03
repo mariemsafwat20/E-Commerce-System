@@ -27,18 +27,18 @@ export class RegisterComponent {
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#%]).{8,}$/)]),
       confirmPass: new FormControl('', [Validators.required, Validators.minLength(8),
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#%]).{8,}$/)])
-        ,Validators: passwordMatchValidator()
+        // ,Validators: passwordMatchValidator()
     })
   }
   
-  passwordMatchValidator() {
-      const password = this.registerForm.get('pass')?.value;
-      const confirmPassword = this.registerForm.get('confirmPass')?.value;
+  // passwordMatchValidator() {
+  //     const password = this.registerForm.get('pass')?.value;
+  //     const confirmPassword = this.registerForm.get('confirmPass')?.value;
   
-      if(password !== confirmPassword) {
-        return passwordMismatch = true ;
-      }
-  }
+  //     if(password !== confirmPassword) {
+  //       return passwordMismatch = true ;
+  //     }
+  // }
 
   registerSender(){
     console.log(this.registerForm);

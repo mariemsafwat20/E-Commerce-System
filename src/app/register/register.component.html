@@ -73,9 +73,9 @@
             <small id="emailHelp" class="form-text text-danger">password length not length than 8 chars , 
                 contains at least one lowercase, one uppercase, at least one digit and special char </small>
         }
-        @if (registerForm.errors?.passwordMatchValidator() && !registerForm.controls['confirmPass'].errors?.['required']) {
+        <!-- @if (registerForm.errors?.passwordMatchValidator() && !registerForm.controls['confirmPass'].errors?.['required']) {
             <small id="emailHelp" class="form-text text-danger">Passwords do not match</small>
-        }
+        } -->
     
         <button type="submit" class="btn btn-primary mt-4 d-flex" [disabled]="registerForm.invalid">Register</button>
         <p class="mt-4">Already hava account
