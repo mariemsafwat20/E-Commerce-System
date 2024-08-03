@@ -1,28 +1,85 @@
 
+<app-navbar></app-navbar>
+
 <div class="container mt-5 ">
     <h1>Sign Up</h1>
-    <form>
-        <div class="row">
-            <div class="col-6 position-relative">
-                <div class="form-group">
-                    <i class="fa-solid fa-user"></i>
-                    <input type="text" class="form-control" name="name" required>
-                </div>
-                <div class="form-group">
-                    <i class="fa-solid fa-envelope"></i>
-                    <input type="email" class="form-control" name="email" required>
-                </div>
-                <div class="form-group">
-                    <i class="fa-solid fa-lock"></i>
-                    <input type="password" class="form-control" name="password" required>
-                </div>
-                <div class="form-group">
-                    <i class="fa-solid fa-unlock"></i>
-                    <input type="password" class="form-control" name="repeat-password" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
 
-            </div>
+    <form [formGroup]="registerForm" (ngSubmit)="registerSender()">
+        <div class="form-group mt-4">
+            <label for="exampleInputUserName">Name</label>
+            <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
+                formControlName = "name" 
+            >
         </div>
+        @if (registerForm.controls['name'].errors?.['required'] && registerForm.controls['name'].touched) {
+            <small id="name" class="form-text text-danger">please Add Your Name</small>
+        }
+
+        <!-- Email -->
+        <div class="form-group mt-4">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+                formControlName = "email"
+            >
+        </div>
+        @if (registerForm.controls['email'].errors?.['required'] && registerForm.controls['email'].touched) {
+            <small id="emailHelp" class="form-text text-danger">please Add Your Email</small>
+        }
+        @if (registerForm.controls['email'].errors?.['pattern'] && !registerForm.controls['email'].errors?.['required']) {
+            <small id="emailHelp" class="form-text text-danger">Invalid email format. </small>
+        }
+
+        <!-- UserName -->
+        <div class="form-group mt-4">
+            <label for="exampleInputUserName">UserName</label>
+            <input type="text" class="form-control" id="exampleInputUserName" aria-describedby="emailHelp"
+                formControlName = "username" 
+            >
+        </div>
+        @if (registerForm.controls['username'].errors?.['required'] && registerForm.controls['username'].touched) {
+            <small id="userHelp" class="form-text text-danger">please Add Your Username</small>
+        }
+        @if (registerForm.controls['username'].errors?.['pattern'] && !registerForm.controls['username'].errors?.['required']) {
+            <small id="userHelp" class="form-text text-danger">Username cannot contain spaces.</small>
+        }
+
+        <!-- Password -->
+        <div class="form-group mt-4">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1"
+            formControlName = "pass"
+            >
+        </div>
+        @if (registerForm.controls['pass'].errors?.['required'] && registerForm.controls['pass'].touched) {
+            <small id="passHelp" class="form-text text-danger">please Add Your Password</small>
+        }
+        @if (registerForm.controls['pass'].errors?.['pattern'] && !registerForm.controls['pass'].errors?.['required']) {
+            <small id="passHelp" class="form-text text-danger">password length not length than 8 chars , 
+                contains at least one lowercase, one uppercase, at least one digit and special char </small>
+        }
+            
+
+        <!-- Confirm Password -->
+        <div class="form-group mt-4">
+            <label for="exampleInputPassword1">Confirm Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1"
+            formControlName = "confirmPass"
+            >
+        </div>
+        @if (registerForm.controls['confirmPass'].errors?.['required'] && registerForm.controls['confirmPass'].touched) {
+            <small id="emailHelp" class="form-text text-danger">please Add Your Confirm Password</small>
+        }
+        @if (registerForm.controls['confirmPass'].errors?.['pattern'] && !registerForm.controls['confirmPass'].errors?.['required']) {
+            <small id="emailHelp" class="form-text text-danger">password length not length than 8 chars , 
+                contains at least one lowercase, one uppercase, at least one digit and special char </small>
+        }
+        @if (registerForm.errors?.passwordMatchValidator() && !registerForm.controls['confirmPass'].errors?.['required']) {
+            <small id="emailHelp" class="form-text text-danger">Passwords do not match</small>
+        }
+    
+        <button type="submit" class="btn btn-primary mt-4 d-flex" [disabled]="registerForm.invalid">Register</button>
+        <p class="mt-4">Already hava account
+            <a class="text-black" routerLink="/signIn">login</a>
+        </p>
     </form>
 </div>
