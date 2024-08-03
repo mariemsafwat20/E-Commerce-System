@@ -31,21 +31,21 @@ export class RegisterComponent {
     })
   }
   
-  // passwordMatchValidator() {
-  //     const password = this.registerForm.get('pass')?.value;
-  //     const confirmPassword = this.registerForm.get('confirmPass')?.value;
-  
-  //     if(password !== confirmPassword) {
-  //       return passwordMismatch = true ;
-  //     }
-  // }
-
   registerSender(){
     console.log(this.registerForm);
     
+    if(this.registerForm.controls['pass'].value != this.registerForm.controls['confirmPass'].value ){
+      console.log(this.registerForm.controls['pass'].value)
+      console.log(this.registerForm.controls['confirmPass'].value)
+      return false
+    }
+
     if(this.registerForm.valid){
       console.log("Your Form is Invalid", this.registerForm.value);
-      
+      return true;
+    } else {
+        console.log("Your Form is Invalid", this.registerForm.value);
+        return false;
     }
-  } 
+  }
 }
