@@ -1,0 +1,37 @@
+
+<section class="usersList mt-5">
+    <div class="container">
+        <p>Welcome to our shopping website.</p>
+
+        <div class="row mt-5">
+            <div class="col-3" *ngFor="let item of prductsArray; let i = index;" [ngClass]="{'imageSize': (i) % 2 === 0}">             
+                <div class="box mb-5" (click)="singleProduct(item.id)">
+                        <div class="stock">
+                            @if (item.stock == 0) {
+                                <p [ngStyle]="{'background-color': 'red'}">Out Of Stock</p>
+                            }@else {
+                                <p [ngStyle]="{'background-color': 'green'}">In Stock</p>
+                            }
+                        </div>
+                        <img [src]="item.img" alt="Profile Image">
+
+                        <div class="productPrice">
+                            <h3>{{item.title}}</h3>
+                            <p>{{item.price}}</p>
+                        </div>
+
+                        <p>{{item.description }}</p>
+
+                        <div class="info text-start" [innerHTML]="convertRatingToStars(item.rating)">
+                            <!-- <i class="fa-solid fa-star mb-4"></i>
+                            <i class="fa-solid fa-star mb-4"></i>
+                            <i class="fa-solid fa-star mb-4"></i> -->
+
+                        </div>
+                        
+                        <button type="button" class="btn btn-light d-block">Add To Cart</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>

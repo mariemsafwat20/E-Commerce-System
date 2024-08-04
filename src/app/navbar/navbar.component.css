@@ -12,3 +12,6 @@
     left: 23px;
     text-align: center;
 }
+.nav-link.active {
+    color: #cc8400;
+}
